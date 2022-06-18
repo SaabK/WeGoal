@@ -1,7 +1,12 @@
 const express = require('express');
+const colors = require('colors');
 const app = express();
 const { errorHandler } = require('./middleware/errorHandler');
+const connectDB = require('./config/db');
 const port = process.env.PORT || 5000;
+const dotenv = require('dotenv').config();
+
+connectDB();
 
 // To access body:
 app.use(express.json());
