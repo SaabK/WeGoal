@@ -3,7 +3,7 @@ const Goal = require('../models/goal');
 
 const getGoals = asyncHandler(async (req, res) => {
 	const goals = await Goal.find({ user: req.user.id });
-	console.log(goals);
+	// console.log(goals);
 
 	res.status(200).json(goals);
 });
@@ -75,7 +75,7 @@ const deleteGoal = asyncHandler(async (req, res) => {
 
 	await thatOneGoal.remove();
 
-	res.json({ message: `Deleted goal with an id of ${id}`, id });
+	res.status(200).json({ id: req.params.id });
 });
 
 module.exports = {

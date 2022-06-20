@@ -28,8 +28,6 @@ function Login() {
 		dispatch(reset());
 	}, [isError, isSuccess, user, message, navigate, dispatch]);
 
-	if (isLoading) return <Spinner />;
-
 	const handleChange = e => {
 		setFormData(prevState => ({
 			...prevState,
@@ -42,6 +40,8 @@ function Login() {
 
 		dispatch(login({ email, password }));
 	};
+
+	if (isLoading) return <Spinner />;
 
 	return (
 		<>

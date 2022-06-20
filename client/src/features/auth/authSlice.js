@@ -45,11 +45,18 @@ export const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
 	}
 });
 
-export const logout = createAsyncThunk('auth/logout', async () => {
-	// try {
-	// 	return await authService.logout();
-	// } catch (error) {}
-	await authService.logout();
+export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+	try {
+		return await authService.logout();
+	} catch (error) {
+		const message =
+			(error.response && error.response.data && error.response.data.message) ||
+			error.message ||
+			error.toString();
+
+		return thunkAPI.rejectWithValue(message);
+	}
+	// return await authService.logout();
 });
 
 export const authSlice = createSlice({
