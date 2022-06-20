@@ -31,7 +31,13 @@ const registerUser = asyncHandler(async (req, res) => {
 		password: hashedPassword,
 	});
 
-	res.json({ message: 'user registered!', token: generateToken(user.id) });
+	res.json({
+		message: 'user registered!',
+		_id: user._id,
+		name: user.name,
+		email: user.email,
+		token: generateToken(user.id),
+	});
 });
 
 const loginUser = asyncHandler(async (req, res) => {
@@ -50,6 +56,9 @@ const loginUser = asyncHandler(async (req, res) => {
 		// Create JWT
 		return res.json({
 			message: 'user logged!',
+			id: thatOneUser._id,
+			name: thatOneUser.name,
+			email: thatOneUser.email,
 			token: generateToken(thatOneUser.id),
 		});
 	} else {
