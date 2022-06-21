@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const colors = require('colors');
 const app = express();
 const { errorHandler } = require('./middleware/errorHandler');
@@ -18,6 +19,15 @@ app.use('/api/users', require('./routes/user'));
 
 // Middlewares:
 app.use(errorHandler);
+
+// Serve static assets in production:
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static(path.join(__dirname, '../client/build')));
+
+	app.get('*', (req, res) => {
+		res.sendFile(path.join(__dirname, '../', 'client', 'build', 'index.html'));
+	});
+}
 
 app.get('/', (req, res) => res.send('Hello World!'));
 app.listen(port, () => console.log(`App listening on port ${port}!`));
