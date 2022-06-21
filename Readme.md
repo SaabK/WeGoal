@@ -3,12 +3,17 @@
 ## An Example App for building Full-Stack Projects
 
 This project is a very simple MERN stack application which just tracks goals. This is an ideal beginner project for a person learning MERN Stack.
+It's hosted on Heroku.
 
 - Good looking UI
 - CRUD Functionality
 - MongoDB as a Database
 - File Structure Practices
 - Redux Toolkit
+
+## Live App
+
+You can checkout the application [here](https://we-goal.herokuapp.com/).
 
 ## Usage
 
